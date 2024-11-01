@@ -10,18 +10,17 @@ class AuthService
     private $lockoutTime = 300;
     private $maxAttempts = 3;
 
-    public function authenticate(array $credentials)
+    public function authenticate(array $credentials): array
     {
         if ($this->isBlocked()) {
             $secondsLeft = session('login_block') - time();
             return [
-                'status' => false,
-                'message' => "Try again in seconds {$secondsLeft}",
-                'code' => 429,
+                'status'    => false,
+                'message'   => "Try again in seconds {$secondsLeft}",
+                'code'      => 429,
             ];
         }
 
-        // Проверка пользователя
         $user = User::where('name', $credentials['name'])->first();
 
         if (is_null($user) || !Hash::check($credentials['password'], $user->password)) {
@@ -29,19 +28,20 @@ class AuthService
             $this->incrementAttempts();
 
             return [
-                'status' => false,
-                'message' => 'Wrong credentials!',
-                'code' => 400,
+                'status'    => false,
+                'message'   => 'Wrong credentials!',
+                'code'      => 400,
             ];
         }
 
         $this->resetAttempts();
+
         Auth::login($user);
 
         return [
-            'status' => true,
-            'message' => 'Login successful!',
-            'code' => 200,
+            'status'    => true,
+            'message'   => 'Login successful!',
+            'code'      => 200,
         ];
     }
 
