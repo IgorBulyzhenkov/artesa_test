@@ -1,0 +1,8 @@
+.hidden {
+    display: none !important;
+}
+
+.active {
+    display: block;
+    background-color: #5eaaec99 !important;
+}
