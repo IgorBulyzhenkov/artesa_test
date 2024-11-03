@@ -8,8 +8,9 @@
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="{{route('home')}}" class="btn btn-info me-1" aria-current="page">Home</a></li>
             <li class="nav-item"><a href="{{route('profile')}}" class="btn btn-info me-1">Profile</a></li>
-{{--            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>--}}
-{{--            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>--}}
+            <li class="list-group-item">
+                <a href="{{ route('tags.list') }}" class="btn btn-info" >List Tags</a>
+            </li>
             <li class="nav-item"><a href="{{route('logout')}}" class="btn btn-danger">Logout</a></li>
         </ul>
     </header>

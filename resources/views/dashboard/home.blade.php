@@ -8,9 +8,18 @@
 
     <div class="container mb-3 mt-3">
         <h1>Home Page</h1>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="{{ route('products.newProductPage') }}" class="btn btn-info" >New Product</a>
+            </li>
+            <li class="list-group-item">
+                <a href="{{ route('tags.newTagPage') }}" class="btn btn-info" >New Tags</a>
+            </li>
+        </ul>
     </div>
 
     <div class="container d-flex" style="flex-direction: row-reverse; justify-content: space-around;">
+
         <ul class="list-group list-group-flush">
             @foreach ($products as $product)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -22,13 +31,18 @@
 
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="" class="btn btn-info">read</a>
+                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-info">edit</a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="" class="btn btn-info">update</a>
+                            <a href="{{ route('products.updatePage', $product->id) }}" class="btn btn-info">update</a>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="" class="btn btn-danger">delete</a>
+                            <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+
+                                <button class="btn btn-danger" type="submit">delete</button>
+                            </form>
                         </li>
                     </ul>
                 </li>
