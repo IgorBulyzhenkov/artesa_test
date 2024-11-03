@@ -9,17 +9,20 @@ document.addEventListener("DOMContentLoaded", function() {
             .map(checkbox => checkbox.id)
             .join(',');
 
-        const url = actionButton.href.split('categories-tree').slice(0, -1).join('');
+        if(actionButton){
+            const url = actionButton.href.split('categories-tree').slice(0, -1).join('');
 
-        if (selectedIds.length > 0) {
-            actionButton.classList.remove('hidden');
-            actionButton.classList.add('active');
-            actionButton.href = `${url}categories-tree/${selectedIds}`;
-        } else {
-            actionButton.classList.add('hidden');
-            actionButton.classList.remove('active');
-            actionButton.href = `${url}categories-tree/`;
+            if (selectedIds.length > 0) {
+                actionButton.classList.remove('hidden');
+                actionButton.classList.add('active');
+                actionButton.href = `${url}categories-tree/${selectedIds}`;
+            } else {
+                actionButton.classList.add('hidden');
+                actionButton.classList.remove('active');
+                actionButton.href = `${url}categories-tree/`;
+            }
         }
+
     }
 
 

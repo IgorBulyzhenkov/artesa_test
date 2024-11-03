@@ -6,3 +6,16 @@
     display: block;
     background-color: #5eaaec99 !important;
 }
+
+.has-error label{ color: #FF4A55 !important; }
+.has-error .form-text{ color: #FF4A55 !important; }
+.has-error input,
+.has-error textarea{
+    background-color: #ff4a553d !important;
+}
+
+.has-error .select2-container--default .select2-selection--single,
+.has-error .select2-container--default .select2-selection--multiple,
+.has-error select{
+    background-color: #ff4a553d !important;
+}
