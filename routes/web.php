@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -17,16 +19,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect( route('home') );
+    return redirect(route('home'));
 });
 
 Route::middleware('auth')->group(function () {
-   Route::get('/',                  [UsersController::class, 'index'])->name('home');
-   Route::get('/logout',            [LogoutController::class, 'logout'])->name('logout');
-    Route::get('/profile',          [UsersController::class, 'profile'])->name('profile');
+    Route::get('/',                     [DashboardController::class, 'index'])->name('home');
+
+    Route::get('/logout',               [LogoutController::class, 'logout'])->name('logout');
+
+    Route::get('/profile',              [UsersController::class, 'profile'])->name('profile');
+
+    Route::get('categories/{id}',       [CategoriesController::class, 'show'])->name('categories.show');
+    Route::get('categories-tree/{id}',  [CategoriesController::class, 'tree'])->name('categories.show_tree');
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login',            [AuthController::class, 'authPage'])->name('login');
-    Route::post('/login',           [AuthController::class, 'login'])->name('login_auth');
+    Route::get('/login',                [AuthController::class, 'authPage'])->name('login');
+    Route::post('/login',               [AuthController::class, 'login'])->name('login_auth');
 });

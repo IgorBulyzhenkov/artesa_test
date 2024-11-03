@@ -10,9 +10,6 @@
         <h2>Welcome {{ Auth::user()->name }}</h2>
     </div>
 
-    <a class="btn btn-danger" href="{{route('logout')}}">Logout</a>
-    <a class="btn btn-info" href="{{route('home')}}">Home</a>
-
 @endsection
 
 @section('script')

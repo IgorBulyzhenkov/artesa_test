@@ -1,5 +1,4 @@
 <?php
-// app/Http/Controllers/AuthController.php
 
 namespace App\Http\Controllers;
 
@@ -14,6 +13,11 @@ class AuthController extends Controller
     public function __construct(AuthService $authService)
     {
         $this->authService = $authService;
+    }
+
+    public function authPage(): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('auth.login');
     }
 
     public function login(Request $request): \Illuminate\Http\JsonResponse
@@ -35,6 +39,9 @@ class AuthController extends Controller
         return response()->json([
             'status'  => $result['status'],
             'message' => $result['message'],
+            'data'    => [
+                'url'   => route('profile')
+            ]
         ], $result['code']);
     }
 }
